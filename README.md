@@ -40,11 +40,11 @@ pdf2md(pdfBuffer, callbacks)
 import pdf2md from 'pdf2md-ts'
 const buffer =readFileSync(path)
 const res = await pdf2md(buffer)
-console.log(res)
+console.log(res) // string[]
 ```
 
 ## Credits
 
-[@opendocsg/pdf2md](https://www.npmjs.com/package/@opendocsg/pdf2md) - Which is this repo forked from
-[pdf-to-markdown](https://github.com/jzillmann/pdf-to-markdown) - original project by Johannes Zillmann  
-[pdf.js](https://mozilla.github.io/pdf.js/) - Mozilla's PDF parsing & rendering platform which is used as a raw parser
+- [@opendocsg/pdf2md](https://www.npmjs.com/package/@opendocsg/pdf2md) - Which is this repo forked from
+- [pdf-to-markdown](https://github.com/jzillmann/pdf-to-markdown) - original project by Johannes Zillmann  
+- [pdf.js](https://mozilla.github.io/pdf.js/) - Mozilla's PDF parsing & rendering platform which is used as a raw parser

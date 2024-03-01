@@ -1,6 +1,6 @@
 {
   "name": "pdf2md-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Convert pdf to markdown, support typescript",
   "main": "lib/pdf2md.js",
   "types": "types/pdf2md.d.ts",
@@ -33,7 +33,7 @@
     "url": "https://github.com/uni-openai/pdf2md.git"
   },
   "dependencies": {
-    "enumify": "^2.0.0",
+    "enumify": "^1.0.4",
     "pdfjs-dist": "^4.0.379"
   },
   "devDependencies": {
