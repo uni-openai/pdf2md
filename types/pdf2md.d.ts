@@ -1,28 +1,23 @@
-import type {
-  PDFDocumentProxy,
-  DocumentInitParameters,
-  TypedArray,
-  TextItem,
-} from "pdfjs-dist/types/display/api";
+import type { PDFDocumentProxy, DocumentInitParameters, TypedArray, TextItem } from 'pdfjs-dist/types/display/api'
 
 interface Page {
-  index: number;
-  items: TextItem[];
+    index: number
+    items: TextItem[]
 }
 interface Font {
-  ids: Set<string>;
-  map: Map<string, any>;
+    ids: Set<string>
+    map: Map<string, any>
 }
 interface Metadata {
-  info: Object;
-  metadata: {
-    parsedData: any;
-    rawData: any;
-    getRaw: () => any;
-    get: (name: any) => any;
-    getAll: () => any;
-    has: (name: any) => any;
-  };
+    info: Object
+    metadata: {
+        parsedData: any
+        rawData: any
+        getRaw: () => any
+        get: (name: any) => any
+        getAll: () => any
+        has: (name: any) => any
+    }
 }
 
 /**
@@ -37,13 +32,13 @@ interface Metadata {
  * @return {Promise<string>} A promise that resolves to the converted Markdown string.
  */
 declare function pdf2md(
-  pdfBuffer: string | URL | TypedArray | ArrayBuffer | DocumentInitParameters,
-  callbacks?: {
-    metadataParsed?: (metadata: Metadata) => void;
-    pageParsed?: (pages: Page[]) => void;
-    fontParsed?: (font: Font) => void;
-    documentParsed?: (document: PDFDocumentProxy, pages: Page[]) => void;
-  }
-): Promise<string[]>;
+    pdfBuffer: string | URL | TypedArray | ArrayBuffer | DocumentInitParameters,
+    callbacks?: {
+        metadataParsed?: (metadata: Metadata) => void
+        pageParsed?: (pages: Page[]) => void
+        fontParsed?: (font: Font) => void
+        documentParsed?: (document: PDFDocumentProxy, pages: Page[]) => void
+    }
+): Promise<string>
 
-export default pdf2md;
+export = pdf2md

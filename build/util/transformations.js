@@ -16,31 +16,31 @@ const ToMarkdown = require('../models/transformations/ToMarkdown')
 const ParseResult = require('../models/ParseResult')
 
 exports.makeTransformations = fontMap => [
-  new CalculateGlobalStats(fontMap),
-  new CompactLines(),
-  new RemoveRepetitiveElements(),
-  new VerticalToHorizontal(),
-  new DetectTOC(),
-  new DetectHeaders(),
-  new DetectListItems(),
+    new CalculateGlobalStats(fontMap),
+    new CompactLines(),
+    new RemoveRepetitiveElements(),
+    new VerticalToHorizontal(),
+    new DetectTOC(),
+    new DetectHeaders(),
+    new DetectListItems(),
 
-  new GatherBlocks(),
-  new DetectCodeQuoteBlocks(),
-  new DetectListLevels(),
+    new GatherBlocks(),
+    new DetectCodeQuoteBlocks(),
+    new DetectListLevels(),
 
-  new ToTextBlocks(),
-  new ToMarkdown(),
+    new ToTextBlocks(),
+    new ToMarkdown()
 ]
 
 exports.transform = (pages, transformations) => {
-  var parseResult = new ParseResult({ pages })
-  let lastTransformation
-  transformations.forEach(transformation => {
-    if (lastTransformation) {
-      parseResult = lastTransformation.completeTransform(parseResult)
-    }
-    parseResult = transformation.transform(parseResult)
-    lastTransformation = transformation
-  })
-  return parseResult
+    var parseResult = new ParseResult({ pages })
+    let lastTransformation
+    transformations.forEach(transformation => {
+        if (lastTransformation) {
+            parseResult = lastTransformation.completeTransform(parseResult)
+        }
+        parseResult = transformation.transform(parseResult)
+        lastTransformation = transformation
+    })
+    return parseResult
 }

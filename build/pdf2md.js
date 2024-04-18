@@ -1,10 +1,11 @@
 /** @format */
 
-const { parse } = require("./util/pdf");
-const { makeTransformations, transform } = require("./util/transformations");
-if (typeof document === "undefined") {
-  require("./util/dom-stubs").setStubs(global);
+const { parse } = require('./util/pdf')
+const { makeTransformations, transform } = require('./util/transformations')
+if (typeof document === 'undefined') {
+    require('./util/dom-stubs').setStubs(global)
 }
+
 /**
  * Reads a
  * @param {string|TypedArray|DocumentInitParameters|PDFDataRangeTransport} pdfBuffer
@@ -20,10 +21,12 @@ if (typeof document === "undefined") {
  *
  * @returns {Promise<string>} The Markdown text
  */
-module.exports = async function (pdfBuffer, callbacks) {
-  const result = await parse(pdfBuffer, callbacks);
-  const { fonts, pages } = result;
-  const transformations = makeTransformations(fonts.map);
-  const parseResult = transform(pages, transformations);
-  return parseResult.pages.map((page) => page.items.join("\n"));
-};
+async function pdf2md(pdfBuffer, callbacks) {
+    const result = await parse(pdfBuffer, callbacks)
+    const { fonts, pages } = result
+    const transformations = makeTransformations(fonts.map)
+    const parseResult = transform(pages, transformations)
+    return parseResult.pages.map(page => page.items.join('\n'))
+}
+
+module.exports = pdf2md
