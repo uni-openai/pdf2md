@@ -1,6 +1,6 @@
 {
     "name": "pdf2md-ts",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Convert pdf to markdown, support typescript",
     "main": "build/pdf2md.js",
     "types": "types/pdf2md.d.ts",
@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "enumify": "^1.0.4",
-        "pdfjs-dist": "3.2.146"
+        "pdfjs-dist": "^3.11.174"
     },
     "devDependencies": {
         "@opengovsg/eslint-config-opengovsg": "^1.0.6",

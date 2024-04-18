@@ -19,7 +19,7 @@ if (typeof document === 'undefined') {
  * @param {Function} [callbacks.fontParsed]
  * @param {Function} [callbacks.documentParsed]
  *
- * @returns {Promise<string>} The Markdown text
+ * @returns {Promise<string[]>} The Markdown text, page array
  */
 async function pdf2md(pdfBuffer, callbacks) {
     const result = await parse(pdfBuffer, callbacks)

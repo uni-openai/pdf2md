@@ -8,7 +8,18 @@ const Page = require('../models/Page')
 
 const NO_OP = () => {}
 
-exports.parse = async function parse(docOptions, callbacks) {
+/**
+ * Parses the PDF document contained in the provided buffer and invokes callback functions during the parsing process.
+ *
+ * @param {Buffer} buffer The buffer containing the PDF document to be parsed. This should be a Buffer type, which represents binary data in memory.
+ * @param {Object} [callbacks] An object containing callback functions that are called at various stages of the parsing process. Each callback is optional.
+ * @param {Function} [callbacks.metadataParsed] Called when the metadata of the PDF has been parsed. The function should accept a single parameter: an object representing the parsed metadata.
+ * @param {Function} [callbacks.pageParsed] Called when a page of the PDF has been parsed. The function should accept a single parameter: an array of objects representing the parsed pages.
+ * @param {Function} [callbacks.fontParsed] Called when a font used in the PDF has been parsed. The function should accept a single parameter: an object representing the parsed font.
+ * @param {Function} [callbacks.documentParsed] Called when the entire document has been parsed. The function should accept two parameters: the first is an object representing the parsed document, and the second is an array of objects representing all parsed pages.
+ * @returns {Promise<void>} A promise that resolves when the parsing process is complete.
+ */
+exports.parse = async function parse(buffer, callbacks) {
     const { metadataParsed, pageParsed, fontParsed, documentParsed } = {
         metadataParsed: NO_OP,
         pageParsed: NO_OP,
@@ -18,7 +29,7 @@ exports.parse = async function parse(docOptions, callbacks) {
     }
     const fontDataPath = path.join(path.resolve(require.resolve('pdfjs-dist'), '../../standard_fonts'), '/')
     const pdfDocument = await pdfjs.getDocument({
-        data: docOptions,
+        data: new Uint8Array(buffer),
         standardFontDataUrl: fontDataPath
     }).promise
     const metadata = await pdfDocument.getMetadata()

@@ -29,7 +29,7 @@ interface Metadata {
  * @param {function} callbacks.pageParsed - Callback for when each page is parsed.
  * @param {function} callbacks.fontParsed - Callback for when a font is parsed.
  * @param {function} callbacks.documentParsed - Callback for when the entire document is parsed.
- * @return {Promise<string>} A promise that resolves to the converted Markdown string.
+ * @return {Promise<string[]>} A promise that resolves to the converted Markdown string.
  */
 declare function pdf2md(
     pdfBuffer: string | URL | TypedArray | ArrayBuffer | DocumentInitParameters,
@@ -39,6 +39,6 @@ declare function pdf2md(
         fontParsed?: (font: Font) => void
         documentParsed?: (document: PDFDocumentProxy, pages: Page[]) => void
     }
-): Promise<string>
+): Promise<string[]>
 
 export = pdf2md
